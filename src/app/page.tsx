@@ -1,6 +1,6 @@
 import styles from "./page.module.css";
 import Review from "./components/Review";
-import Products from "./components/Product";
+import Products from "./components/Products";
 
 export default function Home() {
   return (

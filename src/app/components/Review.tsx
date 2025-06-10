@@ -26,7 +26,7 @@ const Review = () => {
         getReviews()
     }, [])
     return (
-        <section>
+        <section className={styles.reviews}>
             {reviews && reviews.map(r => {
                 return <div key={r.id} className={styles.review} dangerouslySetInnerHTML={sanitizeHtml(r.text)} ></div>
             }
