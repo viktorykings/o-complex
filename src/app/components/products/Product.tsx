@@ -3,6 +3,7 @@ import React from 'react'
 import Image, { ImageLoaderProps } from 'next/image'
 import styles from './product.module.css'
 import { TProduct } from '@/app/types/TProduct'
+import ProductCounter from './ProductCounter'
 
 type ProductProp = {
     product: TProduct
@@ -17,10 +18,8 @@ const Product = ({ product }: ProductProp) => {
         <h3 className={styles.title}>{product.title}</h3>
         <p className={styles.description}>{product.description}</p>
         <p className={styles.price}>{product.price}$</p>
-        <button className={styles.btn}>Купить</button>
+        <ProductCounter />
     </div>
 }
-
-
 
 export default Product
