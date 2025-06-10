@@ -6,25 +6,32 @@ const PhoneInput = () => {
     const [phone, setPhone] = useState<string>('+7 (');
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const formatPhone = (value: string): string => {
-        if (!value) return '+7 (';
+    const formatPhone = (input: string): string => {
+        const cleaned = input.replace(/\D/g, '');
 
-        const cleaned = value.replace(/\D/g, '');
+        // Убираем лишние цифры (если вдруг ввели больше 11)
+        const digits = cleaned.slice(0, 11);
 
-        let formatted = cleaned.startsWith('7') ? '+' + cleaned : '+7' + cleaned.slice(1);
+        let formatted = '+7';
 
-        if (formatted.length > 2) formatted = formatted.slice(0, 2) + ' (' + formatted.slice(2);
-        if (formatted.length > 7) formatted = formatted.slice(0, 7) + ') ' + formatted.slice(7);
-        if (formatted.length > 12) formatted = formatted.slice(0, 12) + '-' + formatted.slice(12, 14);
-        if (formatted.length > 15) formatted = formatted.slice(0, 15) + '-' + formatted.slice(15, 17);
+        if (digits.length > 1) {
+            formatted += ` (${digits.slice(1, 4)}`;
+        }
+        if (digits.length > 4) {
+            formatted += `) ${digits.slice(4, 7)}`;
+        }
+        if (digits.length > 7) {
+            formatted += `-${digits.slice(7, 9)}`;
+        }
+        if (digits.length > 9) {
+            formatted += `-${digits.slice(9, 11)}`;
+        }
 
-        return formatted.slice(0, 18);
+        return formatted;
     };
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const input = e.target.value;
-        const formatted = formatPhone(input);
-        setPhone(formatted);
+        setPhone(formatPhone(e.target.value));
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -58,7 +65,7 @@ const PhoneInput = () => {
                 onKeyDown={handleKeyDown}
                 onBlur={handleBlur}
                 placeholder="+7 (___) ___-__-__"
-                maxLength={18}
+                // maxLength={19}
                 className={styles['phone-input']}
             />
             {phone.length < 18 && (
