@@ -1,6 +1,6 @@
 import styles from "./page.module.css";
 import Review from "./components/reviews/Review";
-import Products from "./components/products/Products";
+import { InfiniteScrollList } from "./components/products/ProductsList";
 
 export default function Home() {
   return (
@@ -9,8 +9,8 @@ export default function Home() {
       <main className={styles.main}>
         <Review />
         <br />
-        <Products />
-
+        {/* <Products /> */}
+        <InfiniteScrollList />
       </main>
 
     </div>
