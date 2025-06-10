@@ -1,5 +1,6 @@
 import styles from "./page.module.css";
 import Review from "./components/Review";
+import Products from "./components/Product";
 
 export default function Home() {
   return (
@@ -7,7 +8,8 @@ export default function Home() {
       <header>тестовое задание</header>
       <main className={styles.main}>
         <Review />
-
+        <br />
+        <Products />
 
       </main>
 

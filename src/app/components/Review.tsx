@@ -15,7 +15,7 @@ const Review = () => {
         __html: DOMPurify.sanitize(html),
     });
     const getReviews = async () => {
-        fetch('http://o-complex.com:1337/reviews')
+        await fetch('http://o-complex.com:1337/reviews')
             .then(res => res.json())
             .then(d => {
                 setReviews(d); console.log(d)
