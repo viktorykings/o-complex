@@ -1,6 +1,7 @@
 import styles from "./page.module.css";
 import Review from "./components/reviews/Review";
 import { InfiniteScrollList } from "./components/products/ProductsList";
+import PhoneInput from "./components/phone-input/PhoneInput";
 
 export default function Home() {
   return (
@@ -9,7 +10,8 @@ export default function Home() {
       <main className={styles.main}>
         <Review />
         <br />
-        {/* <Products /> */}
+        <PhoneInput />
+        <br />
         <InfiniteScrollList />
       </main>
 
